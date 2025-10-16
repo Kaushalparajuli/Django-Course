@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Django - Beginner's Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 280px;
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            color: #3498db;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar a {
+            color: #ecf0f1;
+            text-decoration: none;
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            font-size: 0.95em;
+        }
+
+        .sidebar a:hover {
+            background: #34495e;
+            color: #3498db;
+            transform: translateX(5px);
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px 60px;
+            overflow-y: auto;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .video-container {
+            margin: 30px 0;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .video-container h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+
+        .section h2 {
+            color: #2c3e50;
+            font-size: 2em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+        }
+
+        .section h3 {
+            color: #34495e;
+            font-size: 1.5em;
+            margin: 25px 0 15px 0;
+        }
+
+        .section h4 {
+            color: #555;
+            font-size: 1.2em;
+            margin: 20px 0 10px 0;
+        }
+
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            border-left: 4px solid #3498db;
+        }
+
+        code {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px 20px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .info-box strong {
+            color: #2980b9;
+        }
+
+        ul.packages {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.packages li {
+            background: #f8f9fa;
+            padding: 10px 15px;
+            margin: 8px 0;
+            border-left: 3px solid #3498db;
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="sidebar">
+            <h2>📚 Contents</h2>
+            <ul>
+                <li><a href="#video">Tutorial Video</a></li>
+                <li><a href="#setup">Initial Setup</a></li>
+                <li><a href="#templates">Templates</a></li>
+                <li><a href="#static">Static Files</a></li>
+                <li><a href="#apps">Django Apps</a></li>
+                <li><a href="#models">Models</a></li>
+                <li><a href="#admin">Django Admin</a></li>
+                <li><a href="#display">Display Data</a></li>
+                <li><a href="#urls">Dynamic URLs</a></li>
+                <li><a href="#images">Image Upload</a></li>
+                <li><a href="#auth">Authentication</a></li>
+                <li><a href="#foreign">Foreign Keys</a></li>
+                <li><a href="#forms">Forms & Authorization</a></li>
+            </ul>
+        </nav>
+
+        <main class="content">
+            <div class="hero">
+                <h1>🐍 Python Django</h1>
+                <p>A Complete Beginner's Guide to Django Web Development</p>
+            </div>
+
+            <section id="video" class="section video-container">
+                <h3>📺 Full Course Tutorial</h3>
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/ZxMB6Njs3ck" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <p style="margin-top: 15px; color: #666;"><em>Python Django Full Course for Beginners | Complete All-in-One Tutorial | 3 Hours</em></p>
+            </section>
+
+            <section class="section">
+                <h2>📦 Required Packages</h2>
+                <ul class="packages">
+                    <li><strong>Django-debug-toolbar</strong> - Debug and optimize your Django application</li>
+                    <li><strong>Pillow</strong> - Image processing library</li>
+                </ul>
+                
+                <h3>VS Code Extensions</h3>
+                <ul class="packages">
+                    <li><strong>vscode-icons</strong> - Enhanced file icons</li>
+                </ul>
+            </section>
+
+            <section id="setup" class="section">
+                <h2>🚀 Django Project Initialization</h2>
+                
+                <h3>Create Virtual Environment</h3>
+                <pre><code># Create virtual environment
+py -m venv .venv
+
+# Activate (Windows)
+.venv\Scripts\activate
+
+# Activate (Mac/Linux)
+source .venv/bin/activate
+
+# Deactivate
+deactivate</code></pre>
+
+                <h3>Install Django & Start Project</h3>
+                <pre><code># Install Django
+py -m pip install Django
+
+# Create new project
+django-admin startproject project_name
+
+# Navigate to project
+cd project_name
+
+# Run development server
+py manage.py runserver</code></pre>
+            </section>
+
+            <section id="templates" class="section">
+                <h2>📄 Template Setup</h2>
+                
+                <h3>Configure settings.py</h3>
+                <pre><code>TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': ['templates'],  # Add your template directory path
+        'APP_DIRS': True,
+        ...
+    },
+]</code></pre>
+
+                <h3>Rendering Templates</h3>
+                <pre><code>from django.shortcuts import render
+
+def home(request):
+    return render(request, 'home.html')</code></pre>
+
+                <h3>Creating Layout Template</h3>
+                <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+    &lt;title&gt;
+        {% block title %}
+            Django App
+        {% endblock %}
+    &lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;nav&gt;
+        &lt;!-- Navigation here --&gt;
+    &lt;/nav&gt;
+
+    &lt;main&gt;
+        {% block content %}
+        {% endblock %}
+    &lt;/main&gt;
+
+    &lt;footer&gt;
+        &lt;!-- Footer here --&gt;
+    &lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+
+                <h3>Using Template Layout</h3>
+                <pre><code>{% extends 'layout.html' %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block content %}
+    &lt;h4&gt;Home page content here&lt;/h4&gt;
+{% endblock %}</code></pre>
+            </section>
+
+            <section id="static" class="section">
+                <h2>🎨 Static Files (CSS & JavaScript)</h2>
+                
+                <h3>Configure settings.py</h3>
+                <pre><code>STATIC_URL = 'static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+    # or
+    os.path.join(BASE_DIR, 'static')
+]
+
+# For production
+STATIC_ROOT = BASE_DIR / 'staticfiles'</code></pre>
+
+                <h3>Collect Static Files (Production)</h3>
+                <pre><code>py manage.py collectstatic</code></pre>
+
+                <h3>Using Static Files in Templates</h3>
+                <pre><code>&lt;!DOCTYPE html&gt;
+{% load static %}
+&lt;html&gt;
+&lt;head&gt;
+    &lt;link href="{% static 'css/style.css' %}" rel="stylesheet"/&gt;
+    &lt;script defer src="{% static 'js/main.js' %}"&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- Content --&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                <div class="info-box">
+                    <strong>Note:</strong> The <code>defer</code> attribute loads the script after the page has loaded.
+                </div>
+            </section>
+
+            <section id="apps" class="section">
+                <h2>📱 Django Apps</h2>
+                
+                <h3>Create an App</h3>
+                <pre><code>py manage.py startapp posts</code></pre>
+
+                <h3>App Folder Structure</h3>
+                <pre><code>posts/
+├── migrations/
+├── __init__.py
+├── admin.py
+├── apps.py
+├── models.py
+├── tests.py
+├── views.py
+└── urls.py  (create this)</code></pre>
+
+                <h3>Register App in settings.py</h3>
+                <pre><code>INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'posts',  # Add your app here
+]</code></pre>
+
+                <h3>Create URLs in App</h3>
+                <p>Create <code>urls.py</code> in your app folder:</p>
+                <pre><code>from django.urls import path
+from . import views
+
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='list'),
+]</code></pre>
+
+                <h3>Include App URLs in Main Project</h3>
+                <pre><code>from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('posts/', include('posts.urls')),
+]</code></pre>
+            </section>
+
+            <section id="models" class="section">
+                <h2>🗄️ Creating Models</h2>
+                
+                <div class="info-box">
+                    <strong>References:</strong><br>
+                    Models: <a href="https://docs.djangoproject.com/en/5.2/topics/db/models/" target="_blank">Django Models Documentation</a><br>
+                    Field Types: <a href="https://docs.djangoproject.com/en/5.2/ref/models/fields/#model-field-types" target="_blank">Model Field Types</a>
+                </div>
+
+                <h3>Define Model in models.py</h3>
+                <pre><code>from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=75)
+    body = models.TextField()
+    slug = models.SlugField()
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title</code></pre>
+
+                <h3>Run Migrations</h3>
+                <pre><code># Initial migration (first time)
+py manage.py migrate
+
+# Create migrations for your app
+py manage.py makemigrations
+
+# Apply migrations
+py manage.py migrate</code></pre>
+
+                <h3>Django ORM Shell</h3>
+                <pre><code># Open Django shell (like Tinker in Laravel)
+py manage.py shell</code></pre>
+            </section>
+
+            <section id="admin" class="section">
+                <h2>👤 Django Admin</h2>
+                
+                <h3>Create Superuser</h3>
+                <pre><code>py manage.py createsuperuser</code></pre>
+
+                <h3>Register Model in Admin</h3>
+                <p>In your app's <code>admin.py</code>:</p>
+                <pre><code>from django.contrib import admin
+from .models import Post
+
+admin.site.register(Post)</code></pre>
+            </section>
+
+            <section id="display" class="section">
+                <h2>📊 Display Model Data in Templates</h2>
+                
+                <h3>Create View</h3>
+                <pre><code>from django.shortcuts import render
+from .models import Post
+
+def post_list(request):
+    posts = Post.objects.all().order_by('-date')  # Descending order
+    return render(request, 'posts/post_list.html', {'posts': posts})</code></pre>
+
+                <h3>Display in Template</h3>
+                <pre><code>{% for post in posts %}
+&lt;article&gt;
+    &lt;h1&gt;
+        &lt;a href="{% url 'posts:detail' slug=post.slug %}"&gt;
+            {{ post.title }}
+        &lt;/a&gt;
+    &lt;/h1&gt;
+    &lt;p&gt;{{ post.body }}&lt;/p&gt;
+&lt;/article&gt;
+{% endfor %}</code></pre>
+            </section>
+
+            <section id="urls" class="section">
+                <h2>🔗 Dynamic URLs</h2>
+                
+                <div class="info-box">
+                    <strong>Reference:</strong> <a href="https://docs.djangoproject.com/en/5.2/topics/http/urls/#path-converters" target="_blank">Django URL Path Converters</a>
+                </div>
+
+                <h3>Define URLs with Parameters</h3>
+                <pre><code>from django.urls import path
+from . import views
+
+app_name = 'posts'
+
+urlpatterns = [
+    path('', views.post_list, name='list'),
+    path('&lt;slug:slug&gt;/', views.post_detail, name='detail'),
+]</code></pre>
+
+                <h3>Using Named URLs in Templates</h3>
+                <pre><code>&lt;!-- Simple URL --&gt;
+&lt;a href="{% url 'posts:list' %}"&gt;All Posts&lt;/a&gt;
+
+&lt;!-- URL with parameter --&gt;
+&lt;a href="{% url 'posts:detail' slug=post.slug %}"&gt;
+    {{ post.title }}
+&lt;/a&gt;</code></pre>
+
+                <h3>Create Detail View</h3>
+                <pre><code>from django.shortcuts import render
+from .models import Post
+
+def post_detail(request, slug):
+    post = Post.objects.get(slug=slug)
+    return render(request, 'posts/post_detail.html', {'post': post})</code></pre>
+
+                <h3>Detail Template</h3>
+                <pre><code>&lt;article&gt;
+    &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ post.body }}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+            </section>
+
+            <section id="images" class="section">
+                <h2>🖼️ Image Upload</h2>
+                
+                <h3>Configure settings.py</h3>
+                <pre><code>import os
+
+MEDIA_URL = 'media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')</code></pre>
+
+                <h3>Update Main urls.py</h3>
+                <pre><code>from django.conf.urls.static import static
+from django.conf import settings
+
+urlpatterns = [
+    # ... your URL patterns
+]
+
+urlpatterns += static(settings.MEDIA_URL, 
+                     document_root=settings.MEDIA_ROOT)</code></pre>
+
+                <h3>Install Pillow</h3>
+                <pre><code>pip install Pillow</code></pre>
+
+                <h3>Add Image Field to Model</h3>
+                <pre><code>from django.db import models
+
+class Post(models.Model):
+    title = models.CharField(max_length=75)
+    body = models.TextField()
+    slug = models.SlugField()
+    date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(default='fallback.png', blank=True)
+
+    def __str__(self):
+        return self.title</code></pre>
+
+                <h3>Run Migrations</h3>
+                <pre><code>py manage.py makemigrations
+py manage.py migrate</code></pre>
+
+                <h3>Display Image in Template</h3>
+                <pre><code>&lt;article&gt;
+    &lt;img src="{{ post.image.url }}" alt="{{ post.title }}"/&gt;
+    &lt;h1&gt;{{ post.title }}&lt;/h1&gt;
+    &lt;p&gt;{{ post.body }}&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+            </section>
+
+            <section id="auth" class="section">
+                <h2>🔐 User Authentication</h2>
+                
+                <h3>Registration View</h3>
+                <pre><code>from django.shortcuts import render, redirect
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('posts:list')
+    else:
+        form = UserCreationForm()
+    return render(request, 'users/register.html', {'form': form})</code></pre>
+
+                <h3>Registration Template</h3>
+                <pre><code>&lt;form action="/users/register/" method="post"&gt;
+    {% csrf_token %}
+    {{ form }}
+    &lt;button type="submit"&gt;Register&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+                <h3>Login View</h3>
+                <pre><code>from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login
+
+def login_view(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            login(request, form.get_user())
+            if 'next' in request.POST:
+                return redirect(request.POST.get('next'))
+            else:
+                return redirect('posts:list')
+    else:
+        form = AuthenticationForm()
+    
+    return render(request, 'users/login.html', {'form': form})</code></pre>
+
+                <h3>Login Template</h3>
+                <pre><code>&lt;form action="/users/login/" method="post"&gt;
+    {% csrf_token %}
+    {{ form }}
+    
+    {% if request.GET.next %}
+        &lt;input type="hidden" name="next" value="{{ request.GET.next }}"/&gt;
+    {% endif %}
+    
+    &lt;button type="submit"&gt;Login&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+                <h3>Logout View</h3>
+                <pre><code>from django.contrib.auth import logout
+
+def logout_view(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('posts:list')</code></pre>
+
+                <h3>Logout Form</h3>
+                <pre><code>&lt;form action="{% url 'users:logout' %}" method="POST"&gt;
+    {% csrf_token %}
+    &lt;button type="submit"&gt;Logout&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+
+                <h3>Authentication Check in Templates</h3>
+                <pre><code>{% if user.is_authenticated %}
+    &lt;a href="{% url 'users:logout' %}"&gt;Logout&lt;/a&gt;
+{% else %}
+    &lt;a href="{% url 'users:register' %}"&gt;Register&lt;/a&gt;
+    &lt;a href="{% url 'users:login' %}"&gt;Login&lt;/a&gt;
+{% endif %}</code></pre>
+            </section>
+
+            <section id="foreign" class="section">
+                <h2>🔗 Foreign Key Relationships</h2>
+                
+                <h3>Add Foreign Key to Model</h3>
+                <pre><code>from django.db import models
+from django.contrib.auth.models import User
+
+class Post(models.Model):
+    title = models.CharField(max_length=75)
+    body = models.TextField()
+    slug = models.SlugField()
+    date = models.DateTimeField(auto_now_add=True)
+    image = models.ImageField(default='fallback.png', blank=True)
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
+
+    def __str__(self):
+        return self.title</code></pre>
+
+                <h3>Run Migrations</h3>
+                <pre><code>py manage.py makemigrations
+py manage.py migrate</code></pre>
+            </section>
+
+            <section id="forms" class="section">
+                <h2>📝 Forms & Authorization</h2>
+                
+                <h3>Create forms.py</h3>
+                <pre><code>from django import forms
+from . import models
+
+class CreatePost(forms.ModelForm):
+    class Meta:
+        model = models.Post
+        fields = ['title', 'body', 'slug', 'image']</code></pre>
+
+                <h3>Create View with Authorization</h3>
+                <pre><code>from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
+from . import forms
+
+@login_required(login_url='/users/login/')
+def post_new(request):
+    if request.method == 'POST':
+        form = forms.CreatePost(request.POST, request.FILES)
+        if form.is_valid():
+            newpost = form.save(commit=False)
+            newpost.author = request.user
+            newpost.save()
+            return redirect('posts:list')
+    else:
+        form = forms.CreatePost()
+    
+    return render(request, 'posts/post_new.html', {'form': form})</code></pre>
+
+                <h3>Form Template</h3>
+                <pre><code>&lt;section&gt;
+    &lt;form action="{% url 'posts:new-post' %}" method="post" 
+          enctype="multipart/form-data"&gt;
+        {% csrf_token %}
+        {{ form }}
+        &lt;button type="submit"&gt;Submit&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/section&gt;</code></pre>
+                
+                <div class="info-box">
+                    <strong>Important:</strong> Always include <code>enctype="multipart/form-data"</code> when uploading files.
+                </div>
+            </section>
+
+            <footer style="margin-top: 60px; padding-top: 30px; border-top: 2px solid #eee; text-align: center; color: #777;">
+                <p>Django Documentation for Beginners | Happy Coding! 🚀</p>
+            </footer>
+        </main>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.sidebar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
